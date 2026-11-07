@@ -164,6 +164,10 @@ jobs:
             fi
           fi
 
+      - name: Generate Keystore
+        run: |
+          keytool -genkey -v -keystore TMessagesProj/release.keystore -alias key0 -keyalg RSA -keysize 2048 -validity 10000 -storepass 123456 -keypass 123456 -dname "CN=Siacram"
+
       - name: Build APK
         if: steps.check-secrets.outputs.skip_build != 'true'
         run: |
